@@ -1,34 +1,18 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="https://kit.fontawesome.com/0b12a724a4.js" crossorigin="anonymous"></script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/base.css" rel="stylesheet">
 
-    <title>Recipes</title>
-  </head>
-  <body>
-    
-    <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"> -->
-    <nav class="navbar navbar-expand-md fixed-top">
+<!-- Toolbar -->
+<!-- <nav class="navbar navbar-expand-md fixed-top">
   <a class="navbar-brand" style="color:#fff;">Recipes of mine</a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
+        <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">
-        <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 right">
@@ -36,34 +20,34 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-</nav>
+</nav> -->
 
-<main role="main" class="container">
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8 large-t-p large-b-p" style='color: #fff;'>
-        <h1>Quick Recipe APP</h1>
-      </div>
-    </div>
-    <diuv class="row card">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div id="recipe"></div>
-      </div>
-    </diuv>
+<div class="row">
+  <div class="col-md-12 padding-t-large">
+    <h2>Recipe App</h2>
   </div>
+</div>
+  <!-- Highlight Card -->
+  <div role="main" class="container padding-t-large">
+    <div  class="col-sm-6" id="recipe" *ngFor="let recipe of recipeList let j = index">
+        <div>
+          <p>
+            <span data-toggle='collapse' data-target='#j'>
+              <h4><i *ngIf="recipe.type === 'cocktail'" class="fas fa-cocktail"></i><i *ngIf="recipe.type !== 'cocktail'" class="fas fa-utensils"></i> {{recipe.name}}</h4>
+            </span>
+          </p>
+          <div class='collapse' id="j">
+            <div class="col-md-11 offset-md-1" *ngFor="let amount of recipe.amount; let i = index">
+              <p><span>{{amount}} {{recipe.amountType[i]}} {{recipe.ingredient[i]}}</span></p>
+            </div>
 
-</main><!-- /.container -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <script src="js/base.js"></script>
-    <!-- <script src="js/greeter.js"></script> -->
-  </body>
-</html>
+            <p><span>directions</span></p>
+            <div class="col-md-11 offset-md-1" *ngFor="let noted of recipe.note">
+              <p><span>{{noted}}</span></p>
+            </div>
+          </div>
+      </div>
+      <!-- <i *ngIf="recipe.type === 'cocktail'" class="fas fa-cocktail"></i>
+      <i *ngIf="recipe.type === 'food'" class="fas fa-utensils"></i> -->
+    </div>
+  </div>
